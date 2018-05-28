@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "schema";
+option java_generic_services = true;
+
+service CarService {
+  rpc GetCars(GetCarsRequest) returns (GetCarsResponse);
+}
+
+enum Manufacturer {
+  UNKOWN_MANUFACTURER = 0;
+  TOYOTA = 1;
+  HONDA = 2;
+}
+
+message Car {
+  Manufacturer manufacturer = 1;
+  string model = 2;
+}
+
+message GetCarsRequest {
+  Manufacturer manufacturer = 1;
+}
+
+message GetCarsResponse {
+  repeated Car cars = 1;
+}

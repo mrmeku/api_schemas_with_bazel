@@ -1,0 +1,9 @@
+Language:        JavaScript
+BasedOnStyle:    Google
+ColumnLimit:     100
+---
+Language:        Java
+BasedOnStyle:    Google
+---
+Language:        Proto
+BasedOnStyle:    Google

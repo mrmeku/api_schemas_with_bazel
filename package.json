@@ -1,0 +1,39 @@
+{
+  "name": "example",
+  "version": "0.0.1",
+  "description": "Demo of bazel rules for angular",
+  "license": "Apache 2.0",
+  "dependencies": {
+    "@angular/animations": "6.0.3",
+    "@angular/common": "^6.0.3",
+    "@angular/core": "6.0.3",
+    "@angular/http": "^6.0.3",
+    "@angular/platform-browser": "6.0.3",
+    "protobufjs": "^6.8.6",
+    "rxjs": "6.2.0",
+    "zone.js": "0.8.26"
+  },
+  "devDependencies": {
+    "@angular/bazel": "6.0.3",
+    "@angular/compiler": "6.0.3",
+    "@angular/compiler-cli": "6.0.3",
+    "@bazel/ibazel": "^0.3.1",
+    "clang-format": "1.2.3",
+    "npm-run-all": "^4.1.3",
+    "husky": "0.14.3",
+    "typescript": "2.7.2"
+  },
+  "scripts": {
+    "postinstall": "ngc -p angular.tsconfig.json",
+    "serve": "./bazel-run.sh //app:devserver",
+    "backend": "./bazel-run.sh //backend",
+    "start": "run-p serve backend",
+    "serve-watch": "ibazel run //app:devserver",
+    "backend-watch": "ibazel run //backend",
+    "start-watch": "run-p serve-watch backend-watch",
+    "prebuildifier": "bazel build @com_github_bazelbuild_buildtools//buildifier",
+    "buildifier": "find . -type f \\( -name BUILD -or -name BUILD.bazel \\) ! -path \"./node_modules/*\" | xargs $(bazel info bazel-bin)/external/com_github_bazelbuild_buildtools/buildifier/*/buildifier",
+    "format": "git-clang-format",
+    "precommit": "check-clang-format \"yarn format\""
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "es5",
+      "es2015.collection",
+      "es2015.iterable",
+      "es2015.promise"
+    ],
+    "experimentalDecorators": true,
+    "baseUrl": ".",
+    "paths": {
+      "api_schemas_with_bazel/*": [
+        "./*",
+        "dist/bin/*"
+      ],
+    }
+  },
+  "include": [
+    "app/**/*.ts",
+    "dist/bin/**/*.ts"
+  ]
+}

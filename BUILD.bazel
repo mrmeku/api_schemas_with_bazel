@@ -1,0 +1,44 @@
+package(default_visibility = ["//visibility:public"])
+
+exports_files([
+    "tsconfig.json",
+    "node_modules/protobufjs",
+    "node_modules/zone.js/dist/zone.min.js",
+    "node_modules/long/dist/long.js",
+])
+
+filegroup(
+    name = "node_modules",
+    srcs = glob(["/".join([
+        "node_modules",
+        pkg,
+        "**",
+        ext,
+    ]) for pkg in [
+        "@angular",
+        "tsickle",
+        "tsutils",
+        "typescript",
+        "protobufjs",
+        "@types",
+    ] for ext in [
+        "*.js",
+        "*.json",
+        "*.d.ts",
+    ]]),
+)
+
+filegroup(
+    name = "angular_bundles",
+    srcs = glob(
+        [
+            "node_modules/@angular/*/bundles/*.umd.js",
+        ],
+        exclude = [
+            "node_modules/@angular/*/bundles/*-testing.umd.js",
+            # We use AOT, so the compiler and the dynamic platform-browser should be
+            # visible only in tests
+            "node_modules/@angular/compiler/bundles/*.umd.js",
+        ],
+    ),
+)
