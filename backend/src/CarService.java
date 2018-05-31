@@ -16,6 +16,7 @@ public class CarService extends schema.CarService {
     return Car.newBuilder().setModel(model).setManufacturer(manufacturer).build();
   }
 
+  @Override
   public void getCars(
       RpcController controller, GetCarsRequest request, RpcCallback<GetCarsResponse> done) {
     switch (request.getManufacturer()) {
